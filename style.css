@@ -1,0 +1,207 @@
+#tabbar {
+  --background: #D4E8FF;
+  --color: #0D0F18;
+  --shadow: #0D3ED8;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 51px;
+  height: 760px;
+  overflow: hidden;
+  background: #fff;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  box-shadow: 0 30px 120px 0 var(--shadow);
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  --background-scale-x: 1;
+  --background-scale-y: 1;
+}
+#tabbar.pressed {
+  --background-opacity: 1;
+  --background-duration: .15s;
+  --background-delay: 0s;
+}
+#tabbar .background {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 220px;
+  border-radius: 0 0 51px 51px;
+  overflow: hidden;
+  opacity: var(--background-opacity, 0);
+  -webkit-transition: opacity var(--background-duration, 0.5s) linear var(--background-delay, 0.2s);
+  transition: opacity var(--background-duration, 0.5s) linear var(--background-delay, 0.2s);
+}
+#tabbar .background:before, #tabbar .background:after {
+  content: '';
+  position: absolute;
+}
+#tabbar .background:after {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 108px;
+  border-radius: 31px 31px 0 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(var(--background)), color-stop(60%, #fff));
+  background: linear-gradient(var(--background), #fff 60%);
+  -webkit-transform: scale(var(--background-scale-x), var(--background-scale-y)) translateZ(0);
+          transform: scale(var(--background-scale-x), var(--background-scale-y)) translateZ(0);
+}
+#tabbar .background:before {
+  left: var(--dot-left, 50%);
+  bottom: 32px;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  margin-left: -32px;
+  background: var(--background);
+  -webkit-transform: translateY(var(--dot-y, 0)) scale(var(--dot-scale, 1)) translateZ(0);
+          transform: translateY(var(--dot-y, 0)) scale(var(--dot-scale, 1)) translateZ(0);
+}
+@media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+  #tabbar .background {
+    -webkit-filter: url(#goo);
+            filter: url(#goo);
+  }
+}
+#tabbar ul {
+  margin: auto 0 0 0;
+  padding: 0;
+  list-style: none;
+  width: 375px;
+  height: 108px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 400px) {
+  #tabbar ul {
+    width: 340px;
+  }
+}
+#tabbar ul li {
+  --button-opacity: 1;
+  margin-top: 24px;
+}
+#tabbar ul li:not(:first-child) {
+  margin-left: 24px;
+}
+#tabbar ul li:not(:last-child) {
+  margin-right: 24px;
+}
+#tabbar ul li.active {
+  --icon-opacity: 0;
+  --icon-filled-opacity: 1;
+}
+#tabbar ul li button {
+  display: block;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+  background: none;
+  border: none;
+  position: relative;
+  -webkit-appearance: none;
+  opacity: var(--button-opacity);
+}
+#tabbar ul li button svg {
+  display: block;
+  width: 28px;
+  height: 28px;
+  opacity: var(--opacity, var(--icon-opacity, 1));
+  -webkit-transition: opacity .25s linear;
+  transition: opacity .25s linear;
+}
+#tabbar ul li button svg:last-child {
+  --opacity: var(--icon-filled-opacity, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+* {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: inherit;
+}
+*:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  overflow: hidden;
+  min-height: 100vh;
+  font-family: 'Inter';
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-align: center;
+          align-items: center;
+  background: #275EFE;
+}
+body .dribbble {
+  position: fixed;
+  display: block;
+  right: 20px;
+  bottom: 20px;
+}
+body .dribbble img {
+  display: block;
+  width: 76px;
+}
+body .twitter {
+  position: fixed;
+  display: block;
+  right: 112px;
+  bottom: 14px;
+}
+body .twitter svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+body small {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Inter';
+  display: block;
+  font-size: 14px;
+  line-height: 26px;
+  font-weight: 500;
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  text-decoration: underline;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+@media (max-width: 400px) {
+  body small {
+    left: 20px;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
